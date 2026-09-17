@@ -3,61 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umleitung...</title>
+    <title>Hochzeit Vanessa & Martin</title>
     
-    <!-- 1. HTML-Fallback nach 10 Sekunden (falls JavaScript deaktiviert ist) -->
-    <meta http-equiv="refresh" content="10;url=https://withjoy.com/vanessa-und-martin">
-
+    <!-- Fallback-Weiterleitung nach 10 Sekunden -->
+    <!-- WICHTIG: Ersetze "https://deine-zielseite.de" durch deine echte URL -->
+    <meta http-equiv="refresh" content="10; url=https://withjoy.com/vanessa-und-martin">
+    
     <style>
+        /* Grundlegendes Styling mit dem neuen Hintergrundbild */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        .container {
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
-            padding: 2.5rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            max-width: 420px;
+            
+            /* Hier wird das generierte Bild als Hintergrund gesetzt */
+            background-image: url('watermarked_img_3741654503065349665.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
-        h2 {
+
+        /* Ein halbtransparenter Kasten, damit der Text gut lesbar bleibt */
+        .container {
+            max-width: 600px;
+            padding: 50px 30px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.85); /* 85% weiß */
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px); /* Leichter Unschärfe-Effekt für den Hintergrund */
+        }
+
+        /* Styling für die Namen */
+        h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #333333;
             margin-top: 0;
-            color: #2c3e50;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-size: 1.8em;
         }
-        a {
-            color: #0066cc;
+
+        .redirect-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            color: #444444;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+        }
+
+        /* Styling des manuellen Buttons */
+        .btn-redirect {
+            display: inline-block;
+            padding: 12px 40px;
+            font-size: 1.1em;
             text-decoration: none;
-            font-weight: bold;
+            color: #333333;
+            background-color: transparent;
+            border: 2px solid #333333;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
-        a:hover {
-            text-decoration: underline;
+
+        .btn-redirect:hover {
+            /* Das Eukalyptus-Grün für den Hover-Effekt */
+            background-color: #7A9079; 
+            color: #ffffff;
+            border-color: #7A9079;
+        }
+
+        /* Lade-Indikator */
+        .spinner {
+            margin-top: 30px;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(122, 144, 121, 0.3);
+            border-radius: 50%;
+            border-top-color: #7A9079;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h2>Diese Seite ist umgezogen</h2>
-        <p>Du wirst automatisch weitergeleitet.</p>
-        <p>Falls die Weiterleitung nicht funktioniert, klicke bitte hier:</p>
-        <p><a href="https://withjoy.com/vanessa-und-martin">Weiter zur neuen Adresse</a></p>
+        
+        <!-- Die Namen der beiden -->
+        <h1>Hochzeit Vanessa & Martin</h1>
+
+        <div class="redirect-text">
+            Du wirst in <strong id="countdown">10</strong> Sekunden zu unserer Hochzeitsseite weitergeleitet...
+        </div>
+
+        <!-- Manueller Link, falls jemand nicht warten möchte -->
+        <!-- WICHTIG: Ersetze das href-Attribut durch deine echte URL -->
+        <a href="https://withjoy.com/vanessa-und-martin" class="btn-redirect" id="manual-link">
+            Direkt zur Hochzeitsseite
+        </a>
+
+        <div class="spinner"></div>
     </div>
 
-    <!-- 2. JavaScript für die verzögerte Weiterleitung -->
     <script>
-        // DEINE ZIEL-URL HIER EINTRAGEN:
-        const targetUrl = "https://withjoy.com/vanessa-und-martin";
+        // JavaScript für den visuellen Countdown und die Weiterleitung
+        let timeLeft = 10;
+        const countdownElement = document.getElementById('countdown');
+        
+        // HIER DEINE ECHTE ZIEL-URL EINTRAGEN
+        const targetUrl = "https://withjoy.com/vanessa-und-martin"; 
+        
+        // Stellt sicher, dass auch der Button auf die richtige URL im Script zeigt
+        document.getElementById('manual-link').href = targetUrl;
 
-        setTimeout(function() {
-            window.location.href = targetUrl;
-        }, 10000); // 10000 Millisekunden = 10 Sekunden
+        const timer = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                window.location.href = targetUrl;
+            }
+        }, 1000);
     </script>
+
 </body>
 </html>

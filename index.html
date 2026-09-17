@@ -23,10 +23,10 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Zentriert auf großen Bildschirmen */
             text-align: center;
             
-            /* Mobile-freundliche Hintergrund-Einstellungen (ohne 'fixed') */
+            /* Mobile-freundliche Hintergrund-Einstellungen */
             background-color: #f4f4f4;
             background-image: url('watermarked_img_3741654503065349665.jpg');
             background-size: cover;
@@ -36,41 +36,42 @@
 
         /* Responsive Container */
         .container {
-            width: 85%; /* Lässt auf dem Handy Rand für das Hintergrundbild */
+            width: 85%;
             max-width: 500px;
-            padding: 40px 20px;
+            padding: 35px 20px;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             
-            /* Milchglas-Effekt */
-            background-color: rgba(255, 255, 255, 0.85); /* 85% weiß */
+            /* Deutlich transparenter (65% statt 85%) */
+            background-color: rgba(255, 255, 255, 0.65); 
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             
-            /* Blur-Effekt für moderne Browser und Safari */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            /* Blur-Effekt reduziert, damit das Bild besser durchscheint */
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
         }
 
         /* Styling für die Namen */
         h1 {
             font-weight: 300;
             letter-spacing: 2px;
-            color: #333333;
+            color: #222222;
             margin-top: 0;
             margin-bottom: 25px;
             text-transform: uppercase;
-            font-size: 1.6em; /* Etwas kleiner für Mobile */
+            font-size: 1.8em;
         }
 
         .redirect-text {
-            font-size: 1.05em;
-            margin-bottom: 30px;
-            color: #444444;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #333333;
             letter-spacing: 0.5px;
             line-height: 1.5;
+            font-weight: 500;
         }
 
         /* Styling des manuellen Buttons */
@@ -79,19 +80,19 @@
             padding: 12px 30px;
             font-size: 1.05em;
             text-decoration: none;
-            color: #333333;
+            color: #111111;
             background-color: transparent;
             border: 2px solid #333333;
             border-radius: 50px;
             transition: all 0.3s ease;
             cursor: pointer;
-            width: 80%; /* Button nimmt auf Mobile fast die Container-Breite ein */
+            width: 80%;
             max-width: 250px;
             box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.5); /* Leichter weißer Hintergrund für den Button für Lesbarkeit */
         }
 
         .btn-redirect:hover {
-            /* Das Eukalyptus-Grün für den Hover-Effekt */
             background-color: #7A9079; 
             color: #ffffff;
             border-color: #7A9079;
@@ -99,10 +100,10 @@
 
         /* Lade-Indikator */
         .spinner {
-            margin-top: 30px;
+            margin-top: 25px;
             width: 30px;
             height: 30px;
-            border: 3px solid rgba(122, 144, 121, 0.3);
+            border: 3px solid rgba(122, 144, 121, 0.4);
             border-radius: 50%;
             border-top-color: #7A9079;
             animation: spin 1s ease-in-out infinite;
@@ -112,15 +113,27 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Spezielle Anpassungen für sehr kleine Bildschirme (Smartphones hochkant) */
-        @media (max-width: 480px) {
+        /* Spezielle Anpassungen für Handys (Smartphones hochkant) */
+        @media (max-width: 768px) {
+            body {
+                /* Schiebt die Box auf dem Handy in die untere Hälfte, damit die Ringe oben frei bleiben! */
+                justify-content: flex-end; 
+                padding-bottom: 12vh; /* Abstand zum unteren Rand */
+            }
+            
+            .container {
+                width: 90%; /* Etwas schmaler */
+                padding: 25px 15px; /* Kompakter (weniger Höhe) */
+            }
+
             h1 {
                 font-size: 1.4em;
-                letter-spacing: 1px;
+                margin-bottom: 15px;
             }
-            .container {
-                width: 88%;
-                padding: 30px 15px;
+
+            .redirect-text {
+                font-size: 1em;
+                margin-bottom: 20px;
             }
         }
     </style>

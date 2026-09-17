@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hochzeit Vanessa & Martin</title>
     
     <!-- Fallback-Weiterleitung nach 10 Sekunden -->
@@ -10,39 +10,48 @@
     <meta http-equiv="refresh" content="10; url=https://withjoy.com/vanessa-und-martin">
     
     <style>
-        /* Grundlegendes Styling mit dem neuen Hintergrundbild */
-        body {
+        /* Grundlegendes Styling für 100% Höhe */
+        html, body {
             margin: 0;
             padding: 0;
+            min-height: 100vh;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
             color: #333333;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             text-align: center;
             
-            /* Hier wird das generierte Bild als Hintergrund gesetzt */
+            /* Mobile-freundliche Hintergrund-Einstellungen (ohne 'fixed') */
+            background-color: #f4f4f4;
             background-image: url('watermarked_img_3741654503065349665.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
         }
 
-        /* Ein halbtransparenter Kasten, damit der Text gut lesbar bleibt */
+        /* Responsive Container */
         .container {
-            max-width: 600px;
-            padding: 50px 30px;
-            margin: 20px;
+            width: 85%; /* Lässt auf dem Handy Rand für das Hintergrundbild */
+            max-width: 500px;
+            padding: 40px 20px;
+            margin: 20px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
+            
+            /* Milchglas-Effekt */
             background-color: rgba(255, 255, 255, 0.85); /* 85% weiß */
             border-radius: 16px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px); /* Leichter Unschärfe-Effekt für den Hintergrund */
+            
+            /* Blur-Effekt für moderne Browser und Safari */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         /* Styling für die Namen */
@@ -53,11 +62,11 @@
             margin-top: 0;
             margin-bottom: 25px;
             text-transform: uppercase;
-            font-size: 1.8em;
+            font-size: 1.6em; /* Etwas kleiner für Mobile */
         }
 
         .redirect-text {
-            font-size: 1.1em;
+            font-size: 1.05em;
             margin-bottom: 30px;
             color: #444444;
             letter-spacing: 0.5px;
@@ -67,8 +76,8 @@
         /* Styling des manuellen Buttons */
         .btn-redirect {
             display: inline-block;
-            padding: 12px 40px;
-            font-size: 1.1em;
+            padding: 12px 30px;
+            font-size: 1.05em;
             text-decoration: none;
             color: #333333;
             background-color: transparent;
@@ -76,6 +85,9 @@
             border-radius: 50px;
             transition: all 0.3s ease;
             cursor: pointer;
+            width: 80%; /* Button nimmt auf Mobile fast die Container-Breite ein */
+            max-width: 250px;
+            box-sizing: border-box;
         }
 
         .btn-redirect:hover {
@@ -99,6 +111,18 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        /* Spezielle Anpassungen für sehr kleine Bildschirme (Smartphones hochkant) */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4em;
+                letter-spacing: 1px;
+            }
+            .container {
+                width: 88%;
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -115,7 +139,7 @@
         <!-- Manueller Link, falls jemand nicht warten möchte -->
         <!-- WICHTIG: Ersetze das href-Attribut durch deine echte URL -->
         <a href="https://withjoy.com/vanessa-und-martin" class="btn-redirect" id="manual-link">
-            Direkt zur Hochzeitsseite
+            Direkt zur Seite
         </a>
 
         <div class="spinner"></div>
